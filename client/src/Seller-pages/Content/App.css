@@ -1,0 +1,8 @@
+.App{
+    min-height: 85vh;
+    display:flex;
+    flex-direction: column;
+}
+.footer{
+    margin-top: auto;
+}
