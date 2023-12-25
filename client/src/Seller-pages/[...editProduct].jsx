@@ -50,9 +50,9 @@ const EditProduct = ({
       setErrors("Please fill all the fields");
       return;
     }
-
+    
     axios
-      .put(`https://vinf-app.vercel.app/seller/product/edit/${id}`, {
+      .put(`http://localhost:1337/seller/product/edit/${id}`, {
         name,
         color,
         category,
@@ -109,14 +109,48 @@ const EditProduct = ({
             className=" flex flex-col justify-center items-center p-4 border border-black rounded-md"
           />
           <label className="text-xl">Category of the Product</label>
-          <input
-            type="text"
-            placeholder="Category"
-            required
-            value={category}
-            onChange={(ev) => setCategory(ev.target.value)}
-            className=" flex flex-col justify-center items-center p-4 border border-black rounded-md" readOnly
-          />
+          <div className="p-2 rounded-lg flex items-center gap-4">
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Smartphone"
+                checked={category === "Smartphone"}
+                onClick={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Smartphone
+            </label>
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Laptop"
+                checked={category === "Laptop"}
+                onClick={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Laptop
+            </label>
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Groceries"
+                checked={category === "Groceries"}
+                onClick={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Groceries
+            </label>
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Clothings"
+                checked={category === "Clothings"}
+                onClick={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Clothings
+            </label>
+          </div>
           <label className="text-xl">Description of the Product</label>
           <textarea
             placeholder="Description"

@@ -4,8 +4,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const NewProduct = () => {
-  const [semail,setSemail] = useState("");
-  const [email,setEmail] = useState("");
+  const [semail, setSemail] = useState("");
+  const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [description, setDescription] = useState("");
@@ -18,10 +18,10 @@ const NewProduct = () => {
   const win = window.sessionStorage;
 
   useEffect(() => {
-    if(localStorage.getItem("semail")){
+    if (localStorage.getItem("semail")) {
       setSemail(localStorage.getItem("semail"));
     }
-  },[win])
+  }, [win]);
 
   const toBase = (ev) => {
     const file = ev.target.files[0];
@@ -52,25 +52,24 @@ const NewProduct = () => {
       return;
     }
     axios
-  .post("https://vinf-app.vercel.app/seller/product/new", {
-    semail,
-    name,
-    color,
-    description,
-    category,
-    price,
-    image,
-  })
-  .then((res) => {
-    console.log(res.status);
-    if (res.status === 201) {
-      window.location.href = "/seller/product";
-    }
-  })
-  .catch((err) => {
-    console.error("Error adding product:", err);
-  });
-
+      .post("https://vinf-app.vercel.app/seller/product/new", {
+        semail,
+        name,
+        color,
+        description,
+        category,
+        price,
+        image,
+      })
+      .then((res) => {
+        console.log(res.status);
+        if (res.status === 201) {
+          window.location.href = "/seller/product";
+        }
+      })
+      .catch((err) => {
+        console.error("Error adding product:", err);
+      });
   };
 
   return (
@@ -116,16 +115,49 @@ const NewProduct = () => {
             className=" flex flex-col justify-center items-center p-4 border border-black rounded-md"
           />
           <label className="text-xl">Category of the Product</label>
-          <select
-            className="p-2 rounded-lg bg-red-200 shadow-lg focus:outline-none"
-            onChange={(ev) => setCategory(ev.target.value)} value={category}
-          >
-            <option value="none">-NONE-</option>
-            <option value="Smartphone">Smartphone</option>
-            <option value="Laptop">Laptop</option>
-            <option value="Groceries">Groceries</option>
-            <option value="Clothings">Clothings</option>
-          </select>
+          <div className="p-2 rounded-lg flex items-center gap-4">
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Smartphone"
+                checked={category === "Smartphone"}
+                onChange={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Smartphone
+            </label>
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Laptop"
+                checked={category === "Laptop"}
+                onChange={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Laptop
+            </label>
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Groceries"
+                checked={category === "Groceries"}
+                onChange={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Groceries
+            </label>
+            <label className="">
+              <input
+                type="radio"
+                name="category"
+                value="Clothings"
+                checked={category === "Clothings"}
+                onChange={(ev) => setCategory(ev.target.value)}
+              />
+              {" "}Clothings
+            </label>
+          </div>
+
           <label className="text-xl">Description of the Product</label>
           <textarea
             placeholder="Description"
