@@ -13,12 +13,11 @@ const Product = () => {
     if (sellerEmail) {
       setSemail(sellerEmail);
       axios
-        .post(`http://vinf-app.vercel.app/seller/product`, { semail })
+        .post(`http://localhost:1337/seller/product`, { semail })
         .then((response) => {
           const { data } = response;
           // Assuming 'response' contains the data returned from the API
           setProducts(data.data);
-          console.log(response);
         })
         .catch((error) => {
           console.error("Error fetching products:", error);

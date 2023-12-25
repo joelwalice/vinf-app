@@ -115,7 +115,7 @@ const EditProduct = ({
             required
             value={category}
             onChange={(ev) => setCategory(ev.target.value)}
-            className=" flex flex-col justify-center items-center p-4 border border-black rounded-md"
+            className=" flex flex-col justify-center items-center p-4 border border-black rounded-md" readOnly
           />
           <label className="text-xl">Description of the Product</label>
           <textarea

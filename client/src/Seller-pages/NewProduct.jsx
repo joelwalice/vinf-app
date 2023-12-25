@@ -116,14 +116,16 @@ const NewProduct = () => {
             className=" flex flex-col justify-center items-center p-4 border border-black rounded-md"
           />
           <label className="text-xl">Category of the Product</label>
-          <input
-            type="text"
-            placeholder="Category"
-            required
-            value={category}
-            onChange={(ev) => setCategory(ev.target.value)}
-            className=" flex flex-col justify-center items-center p-4 border border-black rounded-md"
-          />
+          <select
+            className="p-2 rounded-lg bg-red-200 shadow-lg focus:outline-none"
+            onChange={(ev) => setCategory(ev.target.value)} value={category}
+          >
+            <option value="none">-NONE-</option>
+            <option value="Smartphone">Smartphone</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Clothings">Clothings</option>
+          </select>
           <label className="text-xl">Description of the Product</label>
           <textarea
             placeholder="Description"
