@@ -13,7 +13,7 @@ const Product = () => {
     if (sellerEmail) {
       setSemail(sellerEmail);
       axios
-        .post(`http://localhost:1337/seller/product`, { semail })
+        .post(`https://vinf-app.vercel.app/seller/product`, { semail })
         .then((response) => {
           const { data } = response;
           // Assuming 'response' contains the data returned from the API
