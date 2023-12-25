@@ -52,7 +52,7 @@ const EditProduct = ({
     }
     
     axios
-      .put(`http://localhost:1337/seller/product/edit/${id}`, {
+      .put(`https://vinf-app.vercel.app/seller/product/edit/${id}`, {
         name,
         color,
         category,
