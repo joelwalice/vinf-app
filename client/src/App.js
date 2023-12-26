@@ -3,23 +3,23 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import SLogin from "./Seller-pages/SLogin";
-import SRegister from "./Seller-pages/SRegister";
+import SLogin from "./pages/SLogin";
+import SRegister from "./pages/SRegister";
 import Home from "./pages/Home";
 import Account from "./pages/Account";
 import Order from "./pages/Order";
 import Favourite from "./pages/Favourite";
 import Contact from "./pages/Contact";
-import SHome from "./Seller-pages/SHome";
-import Product from "./Seller-pages/Product";
-import NewProduct from "./Seller-pages/NewProduct";
-import Income from "./Seller-pages/Income";
-import SContact from "./Seller-pages/SContact";
-import Ssetting from "./Seller-pages/Ssetting";
-import SCart from "./Seller-pages/SCart";
+import SHome from "./pages/SHome";
+import Product from "./pages/Product";
+import NewProduct from "./pages/NewProduct";
+import Income from "./pages/Income";
+import SContact from "./pages/SContact";
+import Ssetting from "./pages/Ssetting";
+import SCart from "./pages/SCart";
 import Cart from "./pages/Cart";
-import EditProduct from "./Seller-pages/[...editProduct]";
-import DeleteProduct from "./Seller-pages/DeleteProduct";
+import EditProduct from "./pages/[...editProduct]";
+import DeleteProduct from "./pages/DeleteProduct";
 
 function App() {
     return (
