@@ -7,10 +7,10 @@ const ProductModel = require('./pDetail');
 const Product = require("./pDetail");
 const CountryModel = require('./cDetails');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 const app = express();
-  
+
 app.use(cors());
 
 app.use(express.json());
@@ -92,29 +92,39 @@ app.post('/seller/register', (req, res) => {
 app.post('/seller/product/new', async (req, res) => {
     const { semail, name, price, description, color, category, image } = req.body;
     try {
-      await ProductModel.create({ email: semail, name, price, description, color, category, image });
-      res.status(201).json({ status: "ok" });
+        await ProductModel.create({ email: semail, name, price, description, color, category, image });
+        res.status(201).json({ status: "ok" });
     } catch (error) {
-      console.error("Error creating product:", error);
-      res.status(500).json({ status: "error", error: error.message });
+        console.error("Error creating product:", error);
+        res.status(500).json({ status: "error", error: error.message });
     }
-  });
-  
+});
+
 
 app.post('/seller/product', async (req, res) => {
     try {
         const { semail } = req.body; // Accessing the 'semail' property from req.body
-        console.log(semail);
+        if (semail) {
+            console.log(semail);
+            const products = await ProductModel.find({ email: semail });
 
-        const products = await ProductModel.find({ email: semail });
-
-        if (products.length > 0) {
-            console.log(products);
-            res.status(200).json({ data: products });
-        } else {
-            console.log("No data");
-            res.status(404).json({ message: "No products found for the email provided." });
+            if (products.length > 0) {
+                res.status(200).json({ data: products });
+            } else {
+                res.status(404).json({ message: "No products found for the email provided." });
+            }
         }
+        else{
+            const products = await ProductModel.find();
+
+            if (products.length > 0) {
+                res.status(200).json({ data: products });
+            } else {
+                console.log("No data");
+                res.status(404).json({ message: "No products found for the email provided." });
+            }
+        }
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: "Internal server error" });

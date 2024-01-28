@@ -12,41 +12,28 @@ const NewProduct = () => {
   const [price, setPrice] = useState("");
   const [errors, setErrors] = useState("");
   const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [category, setCategory] = useState("");
   const { id } = useParams();
-  const win = window.sessionStorage;
 
   useEffect(() => {
     if (localStorage.getItem("semail")) {
       setSemail(localStorage.getItem("semail"));
     }
-  }, [win]);
+  });
 
-  const toBase = (ev) => {
-    const file = ev.target.files[0];
+  const toBase = (file) => {
     const reader = new FileReader();
-    reader.readAsDataURL(file);
     reader.onload = () => {
-      console.log(reader.result);
-      setImage(reader.result);
+      const base64String = reader.result.split(',')[1]; // Extract base64 string from data URL
+      setImage(base64String); // Set the base64 string to the state
     };
-  };
-
-  const sub = (e) => {
-    fetch("https://vinf-app.vercel.app/seller/product/new", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({ image: image }),
-    });
+    reader.readAsDataURL(file);
   };
 
   const createP = (e) => {
     e.preventDefault();
+    setImage(e);
     if (name === "" || price === "") {
       setErrors("Please fill all the fields");
       return;
