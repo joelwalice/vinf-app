@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./Constant/NavBar";
 import Cards from "./Cards";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
@@ -10,7 +9,7 @@ const Home = () => {
 
   const getProducts = async() => {
     try {
-        await axios.post(`http://localhost:1337/seller/product`)
+        axios.post(`http://vinf-app.vercel.app/seller/product`)
         .then((res) => {
             setProducts(res.data.data);
         })
@@ -62,11 +61,15 @@ const Home = () => {
           {
             products.map((product,i) => (
                 <div key = {i}>
-                    <div className="flex grid cols-3 sm:grid-cols-1 items-center justify-center p-4 bg-gray-500 rounded-lg">
+                    <div className="flex grid cols-3 sm:grid-cols-1 items-center justify-center p-4 bg-gray-200 shadow-lg rounded-lg cursor-pointer hover:scale-102 duration-500">
                         {
-                            product.image ? <img src={product.image} width={300} className="rounded-lg items-center justify-center"/> : <img src="https://www.psdmockups.com/wp-content/uploads/2022/09/iPhone-14-Pro-Mockup-2.jpg" width={300} className="rounded-lg items-center justify-center"/>
+                            product.image ? <img src={product.image} width={300} className="rounded-lg shadow-lg shadow-gray-900 items-center justify-center"/> : <img src="https://www.psdmockups.com/wp-content/uploads/2022/09/iPhone-14-Pro-Mockup-2.jpg" width={300} className="rounded-lg items-center justify-center"/>
                         }
-                        <h1 className="text-xl font-semibold p-2 items-center justify-center text-white">{product.name}</h1>
+                        <div className="flex flex-col items-center justify-center">
+                        <h1 className="text-xl font-semibold p-2 items-center justify-center">{product.name}</h1>
+                        </div>
+                        <h1 className=" p-2 items-center justify-center">{product.description}</h1>
+                        <div className="p-2 flex items-center gap-3"><h1 className="font-semibold">PRICE :</h1> Rs. {product.price}/-</div>
                     </div>
                 </div>
             ))
