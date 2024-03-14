@@ -9,7 +9,7 @@ const Home = () => {
 
   const getProducts = async() => {
     try {
-        axios.post(`http://vinf-app.vercel.app/seller/product`)
+        axios.post(`https://vinf-app.vercel.app/seller/product`)
         .then((res) => {
             setProducts(res.data.data);
         })
